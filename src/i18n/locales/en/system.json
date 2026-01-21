@@ -1,0 +1,12 @@
+{
+    "system.bot_starting": "Bot is starting...",
+    "system.bot_ready": "Bot has started successfully.",
+    "system.bot_shutdown": "Bot is shutting down...",
+
+    "system.config_loaded": "Configuration has been loaded.",
+    "system.config_reloaded": "Configuration has been reloaded.",
+    "system.i18n_loaded": "Internationalization files have been loaded.",
+    "system.i18n_reloaded": "Internationalization files have been reloaded.",
+
+    "system.unknown_error": "An error has occurred: {{error}}"
+}

@@ -1,0 +1,12 @@
+{
+    "common.yes": "Yes",
+    "common.no": "No",
+    "common.enabled": "Enabled",
+    "common.disabled": "Disabled",
+
+    "common.success": "Success",
+    "common.failure": "Failure",
+
+    "common.loading": "Loading...",
+    "common.done": "Done"
+}

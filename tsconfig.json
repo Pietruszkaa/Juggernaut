@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "outDir": "dist",
+    "typeRoots": ["./node_modules/@types"]
+  },
+  "include": ["src", "shared/config/default.ts", "shared/config/merge.ts", "shared/config/types.ts"]
+}

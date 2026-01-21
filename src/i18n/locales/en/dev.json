@@ -1,0 +1,7 @@
+{
+    "dev.command_reloaded": "Command '{{command}}' has been reloaded.",
+    "dev.all_commands_reloaded": "All commands have been reloaded.",
+    "dev.event_reloaded": "Event '{{event}}' has been reloaded.",
+
+    "dev.hot_reload_detected": "Hot reload detected changes in '{{file}}'. Reloading..."
+}

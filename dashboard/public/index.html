@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Juggernaut Dashboard</title>
+</head>
+<body>
+    <h1>Guild Features</h1>
+    <select id="guilds"></select>
+    <div id="features"></div>
+
+    <script>
+        async function loadGuilds() {
+            const res = await fetch("/api/guilds");
+            const guilds = await res.json();
+            const select = document.getElementById("guilds");
+
+            guilds.forEach(id => {
+                const opt = document.createElement("option");
+                opt.value = id;
+                opt.textContent = id;
+                select.appendChild(opt);
+            });
+
+            select.onchange = () => loadConfig(select.value);
+            loadConfig(select.value);
+        }
+
+        async function loadConfig(id) {
+            const res = await fetch(`/api/guilds/${id}`);
+            const cfg = await res.json();
+
+            const div = document.getElementById("features");
+            div.innerHTML = "";
+
+            for (const [key, val] of Object.entries(cfg.features)) {
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.checked = val.enabled;
+
+                checkbox.onchange = async () => {
+                    val.enabled = checkbox.checked;
+                    await fetch(`/api/guilds/${id}`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(cfg)
+                    });
+                };
+
+                const label = document.createElement("label");
+                label.textContent = key;
+                label.prepend(checkbox);
+
+                div.appendChild(label);
+                div.appendChild(document.createElement("br"));
+            }
+        }
+
+        loadGuilds();
+    </script>
+</body>
+</html>
