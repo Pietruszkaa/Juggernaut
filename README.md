@@ -161,6 +161,19 @@ Dashboard (dashboard/.env)
 
 ---
 
+### 🔓 Open Source & Self-Hosting
+
+Juggernaut is an **open-source** Discord bot.
+
+- ✅ Anyone will be able to **self-host** the bot
+- 🛠️ Full control over configuration and features
+- 📦 Designed to be deployable on your own infrastructure
+
+> In the future, it will also be possible to **arrange a hosted instance directly with the author**.  
+> Details will be shared once the project reaches a stable release.
+
+---
+
 ### 📮 Feedback / Issues
 
 Juggernaut is still in early development.
