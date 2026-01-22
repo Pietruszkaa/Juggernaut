@@ -146,17 +146,17 @@ Dashboard (dashboard/.env)
 
 ### 🗺️ Roadmap
 
- - Base bot architecture (95% Done)
+ - [ ] Base bot architecture (95% Done)
 
- - Command & event system
+ - [ ] Command & event system
 
- - Per-guild configuration (95% Done)
+ - [ ] Per-guild configuration (95% Done)
 
- - Web dashboard settings
+ - [ ] Web dashboard settings
 
- - Database integration
+ - [ ] Database integration
 
- - Permissions & roles system
+ - [ ] Permissions & roles system
 >This section will be updated as development progresses.
 
 ---
