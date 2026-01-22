@@ -5,6 +5,7 @@ import { shutdown, registerShutdownHandler } from "./shutdown";
 import { loadAllConfigs } from "./config/configManager";
 import { onGuildCreate } from "./events/guildCreate";
 import { onGuildDelete } from "./events/guildDelete";
+import { startApiServer } from "./api";
 
 const DEFAULT_LANG = "en";
 
@@ -13,6 +14,7 @@ async function main() {
         throw new Error("BOT_TOKEN is not set");
     }
 
+    startApiServer();
     loadI18n();
     loadAllConfigs();
     watchI18n();

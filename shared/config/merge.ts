@@ -1,23 +1,26 @@
 export function mergeWithDefaults<T>(
     defaults: T,
-    data: Partial<T>
+    partial?: Partial<T>
 ): T {
-    const result = structuredClone(defaults);
+    if (!partial) return structuredClone(defaults);
 
-    for (const key in data) {
+    const result: any = structuredClone(defaults);
+
+    for (const key in partial) {
         if (
-            typeof data[key] === "object" &&
-            data[key] !== null &&
-            !Array.isArray(data[key])
+            typeof partial[key] === "object" &&
+            partial[key] !== null &&
+            !Array.isArray(partial[key])
         ) {
             result[key] = mergeWithDefaults(
-                defaults[key],
-                data[key]
+                (defaults as any)[key],
+                partial[key] as any
             );
         } else {
-            result[key] = data[key] as T[Extract<keyof T, string>];
+            result[key] = partial[key];
         }
     }
 
     return result;
 }
+

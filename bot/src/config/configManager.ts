@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
 import chokidar from "chokidar";
-import { DEFAULT_CONFIG, mergeWithDefaults } from "../../shared/config";
-import type { GuildConfig } from "../../shared/config";
+import { DEFAULT_CONFIG, mergeWithDefaults } from "@shared/config";
+import type { GuildConfig } from "@shared/config";
 
 import { fileURLToPath } from "url";
 

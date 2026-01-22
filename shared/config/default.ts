@@ -1,12 +1,12 @@
 import { GuildConfig } from "./types";
 
-export const DEFAULT_CONFIG = {
+export const DEFAULT_CONFIG: GuildConfig = {
     language: "en",
     features: {
         welcome: { enabled: true, channelId: null },
         goodbye: { enabled: false, channelId: null },
         server_stats: { enabled: true, channelId: null },
-        mc_status: { enabled: false, address: "", port:"", interval: 60 },
+        mc_status: { enabled: false, address: "", port: "", interval: 60 },
         levels: { enabled: true, xpRate: 1, channelId: null },
         moderation: { enabled: true },
         auto_roles: { enabled: false, roles: [] },
