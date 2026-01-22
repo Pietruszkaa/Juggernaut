@@ -1,81 +1,94 @@
 import fs from "fs";
 import path from "path";
-import chokidar from "chokidar";
 import { DEFAULT_CONFIG, mergeWithDefaults } from "@shared/config";
 import type { GuildConfig } from "@shared/config";
+import { Client } from "discord.js";
 
-import { fileURLToPath } from "url";
 
+const DATA_DIR = path.resolve(process.cwd(), "data/guilds");
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+function ensureDataDir() {
+    if (!fs.existsSync(DATA_DIR)) {
+        fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
+}
 
-const GUILDS_PATH = path.join(__dirname, "guilds");
+function getGuildFile(guildId: string) {
+    return path.join(DATA_DIR, `${guildId}.json`);
+}
 
-const configs = new Map<string, GuildConfig>();
-
-function loadGuildConfig(guildId: string): GuildConfig {
-    const file = path.join(GUILDS_PATH, `${guildId}.json`);
+/**
+ * Wczytuje (lub tworzy) config dla jednej gildii
+ */
+export function getGuildConfig(guildId: string): GuildConfig {
+    ensureDataDir();
+    const file = getGuildFile(guildId);
 
     if (!fs.existsSync(file)) {
-        return structuredClone(DEFAULT_CONFIG as GuildConfig);
+        const fresh = structuredClone(DEFAULT_CONFIG) as GuildConfig;
+        fs.writeFileSync(file, JSON.stringify(fresh, null, 2));
+        return fresh;
     }
 
     const raw = JSON.parse(fs.readFileSync(file, "utf-8"));
-    return mergeWithDefaults(DEFAULT_CONFIG as GuildConfig, raw);
+    const merged = mergeWithDefaults(DEFAULT_CONFIG, raw);
+
+    // normalizacja przy starcie
+    fs.writeFileSync(file, JSON.stringify(merged, null, 2));
+    return merged;
 }
-
-export function loadAllConfigs() {
-    configs.clear();
-
-    if (!fs.existsSync(GUILDS_PATH)) {
-        fs.mkdirSync(GUILDS_PATH, { recursive: true });
-        return;
+export function ensureConfigsForAllGuilds(client: Client) {
+    for (const guild of client.guilds.cache.values()) {
+        getGuildConfig(guild.id);
     }
 
-    const files = fs.readdirSync(GUILDS_PATH);
-
-    for (const file of files) {
-        if (!file.endsWith(".json")) continue;
-
-        const guildId = file.replace(".json", "");
-        const config = loadGuildConfig(guildId);
-
-        configs.set(guildId, config);
-    }
-
-    console.log("[config] loaded");
+    console.log("[config] ensured configs for all guilds");
 }
 
-export function getGuildConfig(guildId: string): GuildConfig {
-    if (!configs.has(guildId)) {
-        const config = structuredClone(DEFAULT_CONFIG as GuildConfig);
-        configs.set(guildId, config);
-        return config;
-    }
 
-    return configs.get(guildId)!;
+
+/**
+ * Zwraca wszystkie configi (do API / dashboardu)
+ */
+export function getAllGuildConfigs(): {
+    guildId: string;
+    config: GuildConfig;
+}[] {
+    ensureDataDir();
+
+    return fs.readdirSync(DATA_DIR)
+        .filter(f => f.endsWith(".json"))
+        .map(file => {
+            const guildId = file.replace(".json", "");
+            return {
+                guildId,
+                config: getGuildConfig(guildId)
+            };
+        });
 }
 
-export function saveGuildConfig(guildId: string, config: GuildConfig) {
-    if (!fs.existsSync(GUILDS_PATH)) {
-        fs.mkdirSync(GUILDS_PATH, { recursive: true });
-    }
+/**
+ * Aktualizacja configu (dashboard / API)
+ */
+export function updateGuildConfig(
+    guildId: string,
+    partial: Partial<GuildConfig>
+): GuildConfig {
+    const current = getGuildConfig(guildId);
+    const updated = mergeWithDefaults(current, partial);
 
-    const file = path.join(GUILDS_PATH, `${guildId}.json`);
-    fs.writeFileSync(file, JSON.stringify(config, null, 4), "utf-8");
+    fs.writeFileSync(
+        getGuildFile(guildId),
+        JSON.stringify(updated, null, 2)
+    );
+
+    return updated;
 }
 
-export function hasGuildConfig(guildId: string): boolean {
-    return configs.has(guildId);
+/**
+ * Wołane przy starcie bota
+ */
+export function loadAllConfigs(): void {
+    ensureDataDir();
+    console.log("[config] ready");
 }
-
-export function initGuildConfig(guildId: string): GuildConfig {
-    const config = structuredClone(DEFAULT_CONFIG as GuildConfig);
-
-    saveGuildConfig(guildId, config);
-    configs.set(guildId, config);
-
-    return config;
-}
-export { GUILDS_PATH, configs };

@@ -1,7 +1,11 @@
 import express from "express";
 import { guildsRouter } from "./guilds";
+import type { Client } from "discord.js";
 
-export function startApiServer() {
+let discordClient: Client;
+
+export function startApiServer(client: Client) {
+    discordClient = client;
     const app = express();
 
     app.use(express.json());

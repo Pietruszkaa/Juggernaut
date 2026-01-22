@@ -1,18 +1,14 @@
-import { Guild } from "discord.js";
 import fs from "fs";
 import path from "path";
-import { GUILDS_PATH, configs } from "../config/configManager";
+import type { Guild } from "discord.js";
 
-export async function onGuildDelete(guild: Guild) {
-    const guildId = guild.id;
+const DATA_DIR = path.resolve(process.cwd(), "data/guilds");
 
-    // usuń z pamięci
-    configs.delete(guildId);
+export function onGuildDelete(guild: Guild) {
+    const file = path.join(DATA_DIR, `${guild.id}.json`);
 
-    // usuń plik JSON
-    const file = path.join(GUILDS_PATH, `${guildId}.json`);
     if (fs.existsSync(file)) {
         fs.unlinkSync(file);
-        console.log(`[config] deleted config for guild ${guildId}`);
+        console.log(`[guildDelete] removed config for ${guild.id}`);
     }
 }

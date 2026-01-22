@@ -1,0 +1,10 @@
+{
+  "name": "juggernaut-bot",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/bot.ts",
+    "build": "tsc",
+    "start": "node dist/bot.js"
+  }
+}

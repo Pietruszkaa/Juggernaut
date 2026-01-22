@@ -1,9 +1,7 @@
-import { Guild } from "discord.js";
-import { hasGuildConfig, initGuildConfig } from "../config/configManager";
+import type { Guild } from "discord.js";
+import { getGuildConfig } from "../config/configManager";
 
-export async function onGuildCreate(guild: Guild) {
-    if (hasGuildConfig(guild.id)) return;
-
-    initGuildConfig(guild.id);
-    console.log(`[config] created for guild ${guild.id}`);
+export function onGuildCreate(guild: Guild) {
+    getGuildConfig(guild.id);
+    console.log(`[guildCreate] initialized config for ${guild.id}`);
 }

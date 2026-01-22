@@ -1,14 +1,27 @@
+// bot/src/api/guilds.ts
 import { Router } from "express";
-import { getGuildConfig } from "../config/configManager";
+import { getAllGuildConfigs, getGuildConfig } from "../config/configManager";
+import { updateGuildConfig } from "../config/configManager";
 
 export const guildsRouter = Router();
 
-// The "/" route is removed or should be implemented differently if needed.
+guildsRouter.get("/", (_req, res) => {
+  const data = getAllGuildConfigs().map(g => ({
+    id: g.guildId,
+    config: g.config
+  }));
+  res.json(data);
+});
 
-guildsRouter.get("/:guildId", (req, res) => {
-    const config = getGuildConfig(req.params.guildId);
-    if (!config) {
-        return res.status(404).json({ error: "Guild not found" });
-    }
-    res.json(config);
+guildsRouter.get("/", (_req, res) => {
+  const data = getAllGuildConfigs().map(g => ({
+    id: g.guildId
+  }));
+  res.json(data);
+});
+
+// nowy endpoint:
+guildsRouter.put("/:guildId/config", (req, res) => {
+  const updated = updateGuildConfig(req.params.guildId, req.body);
+  res.json(updated);
 });
