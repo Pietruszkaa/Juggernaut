@@ -1,37 +1,4 @@
-# ===== Node =====
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# ===== Build output =====
-dist/
-build/
-out/
-
-# ===== Env =====
+/node_modules
+/dist
+/data
 .env
-.env.local
-.env.*.local
-
-# ===== Config runtime =====
-shared/config/guilds/*.json
-# ===== Logs =====
-logs/
-*.log
-
-# ===== OS =====
-.DS_Store
-Thumbs.db
-
-# ===== IDE =====
-.vscode/
-.idea/
-*.swp
-
-# ===== TS cache =====
-*.tsbuildinfo
-
-# ===== Docker =====
-*.tar
