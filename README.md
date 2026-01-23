@@ -129,7 +129,7 @@ The project is **not a simple bot**, but a foundation for building and managing 
 ### Installation
 
 ```bash
-git clone https://github.com/Pietruszkaa/Juggernaut.git
+git clone -b dev https://github.com/Pietruszkaa/Juggernaut.git
 cd Juggernaut
 npm install
 ```
