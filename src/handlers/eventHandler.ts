@@ -6,7 +6,7 @@ import type { BotEvent } from "../types/event";
 import { clientReadyEvent } from "../events/clientReady";
 import { guildCreateEvent } from "../events/guildCreate";
 import { guildDeleteEvent } from "../events/guildDelete";
-import { interactionCreateEvent } from "src/events/interactionCreate";
+import { interactionCreateEvent } from "../events/interactionCreate";
 
 const events: BotEvent<any[]>[] = [
     clientReadyEvent,
