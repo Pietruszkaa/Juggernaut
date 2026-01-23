@@ -1,5 +1,10 @@
-# 🚧 The bot is in early development
->*This README is a quick draft. Many things can and will change. You may encounter many errors (even in this README)*
+# 🚧 Juggernaut — Early Development (dev branch)
+
+> **Status: Early Development**
+>
+> This repository contains an early development version of **Juggernaut**.
+> The architecture is actively evolving and some features are placeholders.
+> APIs and internal structures may change before the first stable release.
 
 ---
 
@@ -16,7 +21,7 @@
 </a>
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=FF7B00&center=true&vCenter=true&width=435&lines=Robust+Discord+Bot+🤖;Web+Dashboard+Included+🌐;Powered+by+TypeScript+🔥"
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=FF7B00&center=true&vCenter=true&width=500&lines=Modular+Discord+Bot+Platform;DevTools+%26+Dashboard+API;Built+with+TypeScript"
        alt="Typing SVG" />
 </p>
 
@@ -25,33 +30,69 @@
   <img src="https://img.shields.io/github/last-commit/Pietruszkaa/Juggernaut?style=for-the-badge&color=FF7B00" />
   <img src="https://img.shields.io/github/stars/Pietruszkaa/Juggernaut?style=for-the-badge&color=FF7B00" />
   <img src="https://img.shields.io/github/issues/Pietruszkaa/Juggernaut?style=for-the-badge&color=FF7B00" />
-<br>
-  <img src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
-  <img src="https://img.shields.io/badge/Discord.js-14.25-5865F2?style=for-the-badge&logo=discord&logoColor=white" />
-<br>
-  <img src="https://img.shields.io/github/license/Pietruszkaa/Juggernaut?style=for-the-badge&color=FF7B00" />
+  <br>
+  <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Discord.js-14.x-5865F2?style=for-the-badge&logo=discord&logoColor=white" />
 </p>
 
 </div>
 
 ---
 
-### ⚔️ About The Project
+### ⚔️ About the Project
 
-**Juggernaut** is a powerful, general-purpose Discord bot designed for stability and ease of management. Unlike simple bots, Juggernaut comes with a dedicated **Web Dashboard** (Express.js) allowing for easy configuration and monitoring.
+**Juggernaut** is a modular, general-purpose Discord bot platform focused on:
 
-Built with **TypeScript** for type safety and **Chokidar** for advanced hot-reloading during development.
+- long-term maintainability
+- clear architectural boundaries
+- runtime observability
+- future self-hosting and SaaS readiness
+
+The project is **not a simple bot**, but a foundation for building and managing Discord bot functionality in a structured and scalable way.
 
 > *"Constructed to handle the chaos."*
 
 ---
 
-### 🌟 Key Features
+### 🌟 Current Features (dev)
 
-- 🤖 **Modular Bot Core** — clean architecture using `discord.js`
-- 🌐 **Web Dashboard** — external management via `Express`
-- ⚡ **Hot Reloading** — instant updates in dev mode using `chokidar`
-- 🛡️ **Type Safety** — full `TypeScript` support (`tsx`, `ts-node`)
+- 🤖 **Modular Bot Core**
+  - Module registry and lifecycle
+  - Clear separation between core and features
+
+- 🧩 **Commands & Events System**
+  - Central handlers
+  - Type-safe contracts
+  - Discord.js v15-ready usage
+
+- 🔐 **Permissions & Per-Guild Control**
+  - Discord permissions
+  - Owner-only commands
+  - Per-guild command enable/disable
+ 
+- 🌍 Internationalization (i18n)
+  - JSON-based translations
+  - Runtime reload via file watcher
+
+- 🧠 **DevTools Module**
+  - Owner-only administrative commands
+  - Runtime status & module inspection
+  - Reload command (placeholder for future runtime reloads)
+
+- 🌐 **Dashboard API (Read-Only)**
+  - Express-based HTTP API
+  - Exposes bot, guild and module state
+  - Designed for future web dashboard
+
+- 🗄️ **Config System (DB-ready)**
+  - Per-guild configuration
+  - Storage adapter pattern
+  - File-based storage for dev (database planned)
+
+- 🛡️ **Type-Safe Architecture**
+  - Full TypeScript codebase
+  - No deprecated Discord APIs
+  - Strong runtime boundaries
 
 ---
 
@@ -59,133 +100,124 @@ Built with **TypeScript** for type safety and **Chokidar** for advanced hot-relo
 
 <div align="center">
   <img src="https://skillicons.dev/icons?i=ts,nodejs,discord,express,vscode" />
-</div>
 
-<div align="center">
-  
-| Package                 | Purpose                               |
-| :---------------------: | :-----------------------------------: |
-| **Node.js**             | JavaScript runtime (v20+ recommended) |
-| **TypeScript**          | Type-safe development                 |
-| **discord.js** `^14.25` | Discord API wrapper                   |
-| **express** `^5.2`      | Web dashboard backend                 |
-| **chokidar** `^5.0`     | File watcher for hot reload           |
-| **tsx** `^4.21`         | Fast TypeScript execution             |
+
+| Technology            | Purpose                                  |
+|-----------------------|------------------------------------------|
+| Node.js (v20+)        | Runtime                                  |
+| TypeScript            | Type-safe development                    |
+| discord.js ^14.x      | Discord API wrapper (v15-ready usage)    |
+| Express               | Dashboard API                            |
+| tsx                   | Fast TypeScript execution                |
+| chokidar              | File watching for i18n reload
 
 </div>
 
 ---
 
-### 🚀 Getting Started
+### 🚀 Getting Started (Development)
 
-The project is split into **Bot** and **Dashboard** — both run independently.
+> The bot and dashboard API run in a **single Node.js process**.
 
 ### Prerequisites
 
-- **Node.js** `v20+`
-- **npm**
+- Node.js `v20+`
+- npm
 
 ---
 
-### 1️⃣ Bot Installation
+### Installation
 
 ```bash
-cd bot
+git clone https://github.com/Pietruszkaa/Juggernaut.git
+cd Juggernaut
 npm install
 ```
-
-Create a .env file in the bot/ directory:
+Create .env file in the project root:
 
 ```env
-DISCORD_TOKEN=your_discord_bot_token
+BOT_TOKEN=your_discord_bot_token
+OWNER_ID=your_discord_user_id
 ```
 
-Run the bot:
+Run in development mode:
 
 ```bash
-npm run dev   # Watch mode (Auto-reload)
-npm run start     # Production mode
+npm run dev
 ```
 
 ---
 
-### 2️⃣ Dashboard Installation
-
-Navigate to the dashboard directory:
-
-```bash
-cd dashboard
-npm install
-```
-
-Run the dashboard:
+### Dashboard API (dev)
+Once the bot is running, the dashboard API is available at:
 
 ```bash
-npm run dev   # Watch mode (Auto-reload)
-npm run start     # Production mode
+http://localhost:3000/api
 ```
 
->⚠️ The dashboard does not use a .env file yet. Configuration will be added in future versions.
+Available endpoints (read-only):
+
+ - `/api/health`
+ - `/api/modules`
+ - `/api/guilds`
+ - `/api/configs`
+
+>⚠️ Authentication is not implemented yet (planned).
 
 ---
 
-### ⚙️ Environment Variables
+### 🧪 DevTools
+Owner-only Discord commands for runtime inspection:
 
-Bot (bot/.env)
-
-| Variable | Description |
-| :---: | :---: |
-| `DISCORD_TOKEN` |	Discord bot token |
->More variables (database, guild config, permissions, etc.) will be added later.
-
-Dashboard (dashboard/.env)
-
->Not implemented yet — planned for future releases.
+ - `/dev-status` — bot uptime & memory usage
+ - `/dev-modules` — loaded modules
+ - `/dev-reload` — placeholder (no runtime reload yet)
 
 ---
 
-### 🗺️ Roadmap
+### 🌍 Internationalization (i18n)
 
- - [ ] Base bot architecture (95% Done)
+Juggernaut includes an internationalization system with runtime translation reload
+(using a file watcher).
 
- - [ ] Command & event system
+**Current status:**
+- 🇬🇧 English (`en`) is the only fully implemented language
+- 🇵🇱 Polish (`pl`) files exist but are currently empty placeholders
 
- - [ ] Per-guild configuration (95% Done)
+The i18n structure is prepared for future translations and language expansion.
 
- - [ ] Web dashboard settings
+---
 
- - [ ] Database integration
+### 🗺️ Roadmap (High-Level)
 
- - [ ] Permissions & roles system
->This section will be updated as development progresses.
+ - [ ] Per-module enable / disable
+ - [ ] Runtime config reload
+ - [ ] Dashboard authentication (OAuth2)
+ - [ ] Editable config via dashboard
+ - [ ] Database-backed config storage
+ - [ ] Feature flags
+ - [ ] Public/self-hosted deployment support
 
 ---
 
 ### 🔓 Open Source & Self-Hosting
+Juggernaut is open source and designed with self-hosting in mind.
 
-Juggernaut is an **open-source** Discord bot.
+ - You can run it on your own infrastructure
+ - Full control over configuration and features
+ - Architecture prepared for hosted / SaaS offerings in the future
 
-- ✅ Anyone will be able to **self-host** the bot
-- 🛠️ Full control over configuration and features
-- 📦 Designed to be deployable on your own infrastructure
+--- 
 
-> In the future, it will also be possible to **arrange a hosted instance directly with the author**.  
-> Details will be shared once the project reaches a stable release.
+### 📮 Feedback & Issues
+This is an early development project.
+If you encounter bugs, have ideas, or want to discuss architecture decisions:
 
----
+ - open a GitHub Issue
+ - start a discussion
+ - leave suggestions
 
-### 📮 Feedback / Issues
-
-Juggernaut is still in early development.
-If you encounter bugs, have ideas, or suggestions (mainly ideas and suggestions) — please use GitHub Issues.
-
- - 🐞 Bug reports
-
- - 💡 Feature requests
-
- - 🧠 Architecture suggestions
-
-All feedback is welcome 🙌
+All feedback is welcome.
 
 ---
 
@@ -193,10 +225,5 @@ All feedback is welcome 🙌
 
 This project is licensed under the MIT License.
 
-<div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=FF7B00&height=200&section=footer" width="100%" />
-
-<p align="center"> Created by <a href="https://www.google.com/search?q=https://github.com/Pietruszkaa"><b>Piotr Szpont</b></a> </p>
-
-</div>
+<div align="center"> <img src="https://capsule-render.vercel.app/api?type=waving&color=FF7B00&height=200&section=footer" width="100%" /> <p align="center"> Created by <a href="https://www.google.com/search?q=https://github.com/Pietruszkaa"><b>Piotr Szpont</b></a> </p> 
+</div> 
