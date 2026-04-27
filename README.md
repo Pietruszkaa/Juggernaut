@@ -1,4 +1,7 @@
-# 🚧 Juggernaut — Early Development (dev branch)
+# Disclaimer 
+This project may not be updated for a long time, because i have cut the bullshit out, stopped doing this with AI and started learning TS / JS im my limited free time.
+
+# Juggernaut — Early Development (dev branch)
 
 > **Status: Early Development**
 >
@@ -10,7 +13,7 @@
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=FF7B00&height=200&section=header&text=Juggernaut&fontSize=80&animation=fadeIn&fontAlignY=35" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=FF7B00&height=200&section=header" width="100%" />
 
 <a href="https://github.com/Pietruszkaa/Juggernaut">
   <img src="https://github.com/user-attachments/assets/b6b81c68-8bce-4ec0-8cb7-946fcfa2bb99"
@@ -21,15 +24,13 @@
 </a>
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=FF7B00&center=true&vCenter=true&width=500&lines=Modular+Discord+Bot+Platform;DevTools+%26+Dashboard+API;Built+with+TypeScript"
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=FF7B00&center=true&vCenter=true&width=500&lines=Modular+Discord+Bot;DevTools+%26+Dashboard+API;Built+with+TypeScript"
        alt="Typing SVG" />
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Development-orange?style=for-the-badge" />
   <img src="https://img.shields.io/github/last-commit/Pietruszkaa/Juggernaut?style=for-the-badge&color=FF7B00" />
-  <img src="https://img.shields.io/github/stars/Pietruszkaa/Juggernaut?style=for-the-badge&color=FF7B00" />
-  <img src="https://img.shields.io/github/issues/Pietruszkaa/Juggernaut?style=for-the-badge&color=FF7B00" />
   <br>
   <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
   <img src="https://img.shields.io/badge/Discord.js-14.x-5865F2?style=for-the-badge&logo=discord&logoColor=white" />
@@ -39,7 +40,7 @@
 
 ---
 
-### ⚔️ About the Project
+### About the Project
 
 **Juggernaut** is a modular, general-purpose Discord bot platform focused on:
 
@@ -48,55 +49,51 @@
 - runtime observability
 - future self-hosting and SaaS readiness
 
-The project is **not a simple bot**, but a foundation for building and managing Discord bot functionality in a structured and scalable way.
-
-> *"Constructed to handle the chaos."*
-
 ---
 
-### 🌟 Current Features (dev)
+### Current Features (dev)
 
-- 🤖 **Modular Bot Core**
+- **Modular Core**
   - Module registry and lifecycle
   - Clear separation between core and features
 
-- 🧩 **Commands & Events System**
+- **Commands & Events System**
   - Central handlers
   - Type-safe contracts
   - Discord.js v15-ready usage
 
-- 🔐 **Permissions & Per-Guild Control**
+- **Permissions & Per-Guild Control**
   - Discord permissions
   - Owner-only commands
   - Per-guild command enable/disable
  
-- 🌍 Internationalization (i18n)
+- Internationalization (i18n)
   - JSON-based translations
   - Runtime reload via file watcher
 
-- 🧠 **DevTools Module**
+- **DevTools Module**
   - Owner-only administrative commands
   - Runtime status & module inspection
   - Reload command (placeholder for future runtime reloads)
 
-- 🌐 **Dashboard API (Read-Only)**
+- **Dashboard API (Read-Only)**
   - Express-based HTTP API
   - Exposes bot, guild and module state
   - Designed for future web dashboard
 
-- 🗄️ **Config System (DB-ready)**
+- **Config System (DB-ready)**
   - Per-guild configuration
   - Storage adapter pattern
   - File-based storage for dev (database planned)
 
-- 🛡️ **Type-Safe Architecture**
+- **Type-Safe Architecture**
   - Full TypeScript codebase
   - No deprecated Discord APIs
   - Strong runtime boundaries
 
 ---
 
-### 🛠️ Tech Stack
+### Tech Stack
 
 <div align="center">
   <img src="https://skillicons.dev/icons?i=ts,nodejs,discord,express,vscode" />
@@ -115,7 +112,7 @@ The project is **not a simple bot**, but a foundation for building and managing 
 
 ---
 
-### 🚀 Getting Started (Development)
+### Getting Started (Development)
 
 > The bot and dashboard API run in a **single Node.js process**.
 
@@ -162,11 +159,11 @@ Available endpoints (read-only):
  - `/api/guilds`
  - `/api/configs`
 
->⚠️ Authentication is not implemented yet (planned).
+> Authentication is not implemented yet (planned).
 
 ---
 
-### 🧪 DevTools
+### DevTools
 Owner-only Discord commands for runtime inspection:
 
  - `/dev-status` — bot uptime & memory usage
@@ -175,10 +172,9 @@ Owner-only Discord commands for runtime inspection:
 
 ---
 
-### 🌍 Internationalization (i18n)
+### Internationalization (i18n)
 
-Juggernaut includes an internationalization system with runtime translation reload
-(using a file watcher).
+Juggernaut includes an internationalization system with runtime translation reload.
 
 **Current status:**
 - 🇬🇧 English (`en`) is the only fully implemented language
@@ -188,7 +184,7 @@ The i18n structure is prepared for future translations and language expansion.
 
 ---
 
-### 🗺️ Roadmap (High-Level)
+### Roadmap (High-Level)
 
  - [ ] Per-module enable / disable
  - [ ] Runtime config reload
@@ -200,30 +196,18 @@ The i18n structure is prepared for future translations and language expansion.
 
 ---
 
-### 🔓 Open Source & Self-Hosting
+### Open Source & Self-Hosting
 Juggernaut is open source and designed with self-hosting in mind.
 
  - You can run it on your own infrastructure
  - Full control over configuration and features
- - Architecture prepared for hosted / SaaS offerings in the future
-
---- 
-
-### 📮 Feedback & Issues
-This is an early development project.
-If you encounter bugs, have ideas, or want to discuss architecture decisions:
-
- - open a GitHub Issue
- - start a discussion
- - leave suggestions
-
-All feedback is welcome.
+ - Architecture prepared for hosted / SaaS offerings in the future.
 
 ---
 
-### 📄 License
+### License
 
 This project is licensed under the MIT License.
 
-<div align="center"> <img src="https://capsule-render.vercel.app/api?type=waving&color=FF7B00&height=200&section=footer" width="100%" /> <p align="center"> Created by <a href="https://www.google.com/search?q=https://github.com/Pietruszkaa"><b>Piotr Szpont</b></a> </p> 
+<div align="center"> <img src="https://capsule-render.vercel.app/api?type=waving&color=FF7B00&height=200&section=footer" width="100%" />
 </div> 
